@@ -1,0 +1,58 @@
+Spring boot app with dynamodb
+
+1. clone git repo 
+git clone https://github.com/kumarself10/spring-boot-aws-dynamoDB.git
+2. open above folder in eclipse
+3. create a aws-admin group in IAM and attach adminstrator access policy
+4. create a IAM user with programmetic access and add this use to the group.
+5. Create a dynamodb table "student"
+   partition key "studentId" , sort key "lastName"
+6. Add access key , secret key credentials, region name, dynamodb url settings in src/main/resources/application.yml file
+7.Install postman
+8. Run as springboot-aws-dynamodb and run as spring boot app
+9. open http://localhost:9001/dynamoDb
+10. Open postman and post the following 
+post mapping : select post from postman , click on body and paste the following in JSON format (select JSON)
+{
+"firstName": "Mary",
+"lastName": "anoty",
+"address": {
+    "addressLine1": "123A",
+    "addressLine2": "main st",
+    "state": "CA",
+    "city": "LA",
+    "zipCode": "1234"
+},
+"age": "19"
+}
+
+http://localhost:9001/dynamoDb
+12. get mapping : select get from postmane
+http://localhost:9001/dynamoDb?studentId=7f06ff6f-446f-4445-b4eb-75552b1fab51&lastName=anoty
+
+13. Put Mapping: select put from postman
+change age to 18 and street to second street 
+and verify from dynamodb
+
+{
+"studentId": "7f06ff6f-446f-4445-b4eb-75552b1fab51",
+"firstName": "Mary",
+"lastName": "anoty",
+"address": {
+    "addressLine1": "123A",
+    "addressLine2": "second st",
+    "state": "CA",
+    "city": "LA",
+    "zipCode": "1234"
+},
+"age": "18"
+}
+
+14. delete mapping: select delete from postman
+http://localhost:9001/dynamoDb/7f06ff6f-446f-4445-b4eb-75552b1fab51/anoty
+
+verify from dynamodb console
+
+
+
+
